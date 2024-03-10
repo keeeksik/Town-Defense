@@ -6,11 +6,11 @@ public class Farm : MonoBehaviour
     public Storage storage;
     void Start()
     {
-        InvokeRepeating(nameof(Timer), 1, 3);
+        InvokeRepeating(nameof(Timer), 1, 5);
     }
     void Timer()
     {
-        storage.wheat += storage.villager * 2;
+        storage.wheat += storage.villager;
     }
 
     void Update()

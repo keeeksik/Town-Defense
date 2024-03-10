@@ -886,6 +886,8 @@ GameObject:
   m_Component:
   - component: {fileID: 165304746}
   - component: {fileID: 165304745}
+  - component: {fileID: 165304747}
+  - component: {fileID: 165304748}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -908,6 +910,9 @@ MonoBehaviour:
   wheat: 0
   warrior: 0
   villager: 1
+  warriorCount: {fileID: 1158079577}
+  wheatCount: {fileID: 1590162830}
+  villagerCount: {fileID: 473737433}
 --- !u!4 &165304746
 Transform:
   m_ObjectHideFlags: 0
@@ -923,6 +928,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &165304747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165304744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f979b32cfc203494483bb382d185d0db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storage: {fileID: 165304745}
+--- !u!114 &165304748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165304744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c9fc4ff78a18e449aaaa2d402783e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  storage: {fileID: 165304745}
+  eatTime: 5
 --- !u!1001 &195995341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3320,7 +3352,7 @@ GameObject:
   - component: {fileID: 473737434}
   - component: {fileID: 473737433}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: villager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3365,7 +3397,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8506,7 +8538,7 @@ GameObject:
   - component: {fileID: 1158079578}
   - component: {fileID: 1158079577}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: warrior
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8551,7 +8583,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11940,7 +11972,7 @@ GameObject:
   - component: {fileID: 1590162831}
   - component: {fileID: 1590162830}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: wheat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11985,7 +12017,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1000
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9f1dcee93dba6ba4a9037adc3cf0935c, type: 2}
   m_sharedMaterial: {fileID: 1093063004932909154, guid: 9f1dcee93dba6ba4a9037adc3cf0935c,
@@ -14326,6 +14358,7 @@ MonoBehaviour:
   hireButton: {fileID: 1948680918}
   storage: {fileID: 165304745}
   buyWarrior: 1
+  hireTime: 3
 --- !u!114 &1948680918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15198,6 +15231,7 @@ MonoBehaviour:
   hireButton: {fileID: 2138279730}
   storage: {fileID: 165304745}
   buyWarrior: 0
+  hireTime: 3
 --- !u!114 &2138279730
 MonoBehaviour:
   m_ObjectHideFlags: 0

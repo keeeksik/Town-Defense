@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class Wave : MonoBehaviour
@@ -9,29 +10,47 @@ public class Wave : MonoBehaviour
     public int wave;
     public float startTimer;
     public float currentTimer;
+    public Transform spawnpointWarrior;
+    public Transform spawnpointOrc;
+    public GameObject warriorPrefab;
+    public GameObject orcPrefab;
+    public bool isTimerEnd;
+    public Transform centerPoint;
+    public Transform castlePoint;
+
     void Start()
     {
         currentTimer = startTimer;
+
     }
     void Timer()
     {
-       if (storage.warrior >= enemy)
+        if (storage.warrior > 0)
         {
-            storage.warrior -= enemy;
+           Warrior warrior = Instantiate(warriorPrefab, spawnpointWarrior.position, spawnpointWarrior.rotation).GetComponent<Warrior>();
+            warrior.targetPoint = centerPoint;
+           warrior.StartMove();
         }
-        else if (storage.warrior - enemy < 0)
+        Orc orc = Instantiate(orcPrefab, spawnpointOrc.position, spawnpointOrc.rotation).GetComponent<Orc>();
+        orc.storage = storage;
+        orc.wave = this;
+        if (storage.warrior >= 1)
         {
-            storage.villager -= enemy - storage.warrior * 3;
+            orc.targetPoint = centerPoint;
         }
-        else if (storage.villager / 3 + storage.warrior < enemy)
+        else if (storage.warrior == 0)
         {
-            TheEnd();
+
+            orc.targetPoint = castlePoint;
         }
+        orc.StartMove();
+        isTimerEnd = true; 
     }
-    void EndWave()
+    public void EndWave()
     {
         currentTimer = startTimer;
         wave++;
+        isTimerEnd= false;
     }
     void TheEnd()
     {
@@ -39,13 +58,14 @@ public class Wave : MonoBehaviour
     }
     void Update()
     {
-        if (currentTimer <= 0)
+        if (currentTimer <= 0 && !isTimerEnd)
         {
             Timer();
         }
-        else
+        else if (!isTimerEnd)
         {
             currentTimer -= Time.deltaTime;
         }
     }
 }
+
