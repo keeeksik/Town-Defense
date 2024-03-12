@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -17,6 +18,7 @@ public class Wave : MonoBehaviour
     public bool isTimerEnd;
     public Transform centerPoint;
     public Transform castlePoint;
+    public TMP_Text textMeshPro;
 
     void Start()
     {
@@ -51,6 +53,7 @@ public class Wave : MonoBehaviour
         currentTimer = startTimer;
         wave++;
         isTimerEnd= false;
+        
     }
     void TheEnd()
     {
@@ -66,6 +69,8 @@ public class Wave : MonoBehaviour
         {
             currentTimer -= Time.deltaTime;
         }
+
+        textMeshPro.text = Mathf.RoundToInt(currentTimer).ToString() + "s";
     }
 }
 

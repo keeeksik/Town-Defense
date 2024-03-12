@@ -17,6 +17,7 @@ public class Warrior : MonoBehaviour
     {
         animator.SetTrigger("Die");
         Destroy(gameObject, 2f);
+
     }
 
     public void Attack()

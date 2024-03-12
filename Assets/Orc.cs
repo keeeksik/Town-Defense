@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -24,6 +25,9 @@ public class Orc : MonoBehaviour
             {
                 other.GetComponent<Warrior>().Attack();
                 animator.SetTrigger("Die");
+                storage.warrior -= wave.enemy;
+                wave.enemy = 0;
+                Destroy(other.GetComponent<Warrior>().gameObject, 2f);
                 Destroy(gameObject, 2f);
             }
             else if (storage.warrior == wave.enemy)
@@ -31,6 +35,8 @@ public class Orc : MonoBehaviour
                 animator.SetTrigger("Attack");
                 other.GetComponent<Warrior>().Attack();
                 animator.SetTrigger("Die");
+                storage.warrior -= wave.enemy;
+                wave.enemy = 0;
                 Destroy(gameObject, 2f);
                 other.GetComponent<Warrior>().Die();
                 wave.EndWave();
@@ -39,6 +45,8 @@ public class Orc : MonoBehaviour
             {
                 animator.SetTrigger("Attack");
                 other.GetComponent<Warrior>().Die();
+                storage.warrior = 0;
+                wave.enemy -= storage.warrior;
                 wave.EndWave();
             }
         }
