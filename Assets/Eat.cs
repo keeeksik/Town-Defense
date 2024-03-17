@@ -1,4 +1,5 @@
 
+using TMPro;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
@@ -8,7 +9,9 @@ public class Eat : MonoBehaviour
     bool timerGo;
     float timerCurrent;
     float reachTime;
-    public float eatTime;
+    public float startTimer;
+    public TMP_Text eatTimerText;
+
     void Start()
     {
         StartTimer();
@@ -41,20 +44,21 @@ public class Eat : MonoBehaviour
     void StartTimer()
     {
       timerGo = true;
-        reachTime = Time.time + eatTime;
+        reachTime = Time.time + startTimer;
     }
     void Update()
     {
-        if (timerGo && reachTime - eatTime + timerCurrent < reachTime)
+        if (timerGo && reachTime - startTimer + timerCurrent < reachTime)
         {
             timerCurrent += Time.deltaTime;
 
         }
-        else if (reachTime - eatTime + timerCurrent >= reachTime && timerGo)
+        else if (reachTime - startTimer + timerCurrent >= reachTime && timerGo)
         {
             TimerBreak();
 
         }
+        eatTimerText.text = Mathf.RoundToInt(startTimer - timerCurrent).ToString() + "s";
     }
 }
 

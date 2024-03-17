@@ -18,11 +18,19 @@ public class Wave : MonoBehaviour
     public bool isTimerEnd;
     public Transform centerPoint;
     public Transform castlePoint;
-    public TMP_Text textMeshPro;
+    public TMP_Text textWaveTimer;
+    public int waveEnemyCount;
+    public TMP_Text textEnemyWave;
+    public TMP_Text textWave;
+    public GameObject losePanel;
+    public GameObject winPanel;
+    public int wheatToWin;
+    public int villagersToWin;
 
     void Start()
     {
         currentTimer = startTimer;
+        textEnemyWave.text = "Enemies - " + waveEnemyCount.ToString();
 
     }
     void Timer()
@@ -33,18 +41,12 @@ public class Wave : MonoBehaviour
             warrior.targetPoint = centerPoint;
            warrior.StartMove();
         }
+        enemy = waveEnemyCount;
         Orc orc = Instantiate(orcPrefab, spawnpointOrc.position, spawnpointOrc.rotation).GetComponent<Orc>();
         orc.storage = storage;
         orc.wave = this;
-        if (storage.warrior >= 1)
-        {
-            orc.targetPoint = centerPoint;
-        }
-        else if (storage.warrior == 0)
-        {
+        orc.targetPoint = castlePoint;
 
-            orc.targetPoint = castlePoint;
-        }
         orc.StartMove();
         isTimerEnd = true; 
     }
@@ -53,11 +55,24 @@ public class Wave : MonoBehaviour
         currentTimer = startTimer;
         wave++;
         isTimerEnd= false;
-        
+        if (wave < 4)
+        {
+            waveEnemyCount = waveEnemyCount * 2;
+        }
+        else 
+            waveEnemyCount = (int)(waveEnemyCount * 1.5f);
+        textEnemyWave.text = "Enemies - " + waveEnemyCount.ToString();
+        textWave.text = "Wave " + wave.ToString();
+        if (storage.villager < 0)
+        {
+            TheEnd();
+        }
+
     }
+    
     void TheEnd()
     {
-
+        losePanel.SetActive(true);
     }
     void Update()
     {
@@ -70,7 +85,16 @@ public class Wave : MonoBehaviour
             currentTimer -= Time.deltaTime;
         }
 
-        textMeshPro.text = Mathf.RoundToInt(currentTimer).ToString() + "s";
+        textWaveTimer.text = Mathf.RoundToInt(currentTimer).ToString() + "s";
+        if (storage.villager >= villagersToWin && storage.wheat >= wheatToWin)
+        {
+            Win();
+        }
+    }
+    void Win()
+    {
+        winPanel.SetActive(true);
+        Time.timeScale = 0; 
     }
 }
 
