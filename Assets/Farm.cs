@@ -8,6 +8,8 @@ public class Farm : MonoBehaviour
     public float currentTimer;
     public float startTimer;
     public TMP_Text farmTimerText;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
     void Start()
     {
   
@@ -17,7 +19,7 @@ public class Farm : MonoBehaviour
     {
         storage.wheat += storage.villager * 2;
         currentTimer = startTimer;
-        
+        audioSource.PlayOneShot(audioClip);
     }
 
     void Update()

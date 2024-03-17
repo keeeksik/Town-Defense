@@ -6,9 +6,14 @@ using UnityEngine.SceneManagement;
 public class Utilities : MonoBehaviour
 {
 
+    private void Start()
+    {
+        Time.timeScale = 1;
+    }
     public void Restart()
     {
         SceneManager.LoadScene(1);
+
     }
     public void Exit()
     {

@@ -11,13 +11,15 @@ public class Eat : MonoBehaviour
     float reachTime;
     public float startTimer;
     public TMP_Text eatTimerText;
-
+    public AudioSource audioSource;
+    public AudioClip audioClip;
     void Start()
     {
         StartTimer();
     }
     void TimerBreak()
     {
+        audioSource.PlayOneShot(audioClip);
         timerGo = false;
         timerCurrent = 0;
         if (storage.wheat >= storage.warrior)

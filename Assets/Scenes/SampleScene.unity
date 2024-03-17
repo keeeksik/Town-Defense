@@ -1099,6 +1099,8 @@ MonoBehaviour:
   currentTimer: 0
   startTimer: 8
   farmTimerText: {fileID: 1033165892}
+  audioSource: {fileID: 1908159365}
+  audioClip: {fileID: 8300000, guid: 2832e0dc90ec31e498f1249294f4764c, type: 3}
 --- !u!114 &165304748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,8 +1114,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   storage: {fileID: 165304745}
-  startTimer: 5
+  startTimer: 10
   eatTimerText: {fileID: 379316700}
+  audioSource: {fileID: 1908159365}
+  audioClip: {fileID: 8300000, guid: c6bd463fd61e02349950019f69181062, type: 3}
 --- !u!114 &165304749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1129,7 +1133,7 @@ MonoBehaviour:
   enemy: 1
   storage: {fileID: 165304745}
   wave: 1
-  startTimer: 40
+  startTimer: 45
   currentTimer: 0
   spawnpointWarrior: {fileID: 1627002575}
   spawnpointOrc: {fileID: 931663332}
@@ -1146,8 +1150,11 @@ MonoBehaviour:
   textWave: {fileID: 1455591278}
   losePanel: {fileID: 2018958638}
   winPanel: {fileID: 191694855}
-  wheatToWin: 6
-  villagersToWin: 0
+  wheatToWin: 3000
+  villagersToWin: 200
+  audioSource: {fileID: 1908159365}
+  audioClip: {fileID: 8300000, guid: b2d45addd7717014188fa9a3d4a4d46f, type: 3}
+  audioClip2: {fileID: 8300000, guid: d8b992c1a0d5f9543988e1a8594c96bb, type: 3}
 --- !u!114 &165304750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2196,18 +2203,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 165304750}
-        m_TargetAssemblyTypeName: Utilities, Assembly-CSharp
-        m_MethodName: Restart
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1908159365}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: PlayOneShot
@@ -2216,6 +2211,18 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 8300000, guid: d06e79582d19e634f9b8b81b03d01c14,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 165304750}
+        m_TargetAssemblyTypeName: Utilities, Assembly-CSharp
+        m_MethodName: Restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

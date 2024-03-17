@@ -26,6 +26,9 @@ public class Wave : MonoBehaviour
     public GameObject winPanel;
     public int wheatToWin;
     public int villagersToWin;
+    public AudioSource audioSource;
+    public AudioClip audioClip;
+    public AudioClip audioClip2;
 
     void Start()
     {
@@ -46,7 +49,7 @@ public class Wave : MonoBehaviour
         orc.storage = storage;
         orc.wave = this;
         orc.targetPoint = castlePoint;
-
+        audioSource.PlayOneShot(audioClip);
         orc.StartMove();
         isTimerEnd = true; 
     }
@@ -73,6 +76,7 @@ public class Wave : MonoBehaviour
     void TheEnd()
     {
         losePanel.SetActive(true);
+        audioSource.PlayOneShot(audioClip2);
     }
     void Update()
     {
